@@ -2,6 +2,7 @@ package pages;
 
 import data.ApplicationContext;
 import data.Product;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -90,6 +91,7 @@ public class AdminProductPage extends Page {
         addPrice(product);
         addStock(product);
         saveProduct();
+        checkProductAdded(product);
     }
 
     public void addGeneralInformation(Product product){
@@ -138,6 +140,11 @@ public class AdminProductPage extends Page {
     public void saveProduct() {
         wait.until(ExpectedConditions.elementToBeClickable(saveButton));
         saveButton.click();
+    }
+
+    public void checkProductAdded(Product product) {
+        catalogOpen(product.getCatalog());
+        Assert.assertNotNull(driver.findElement(By.xpath(String.format("//*[text()='%s']", product.getName()))));
     }
 
     public void logout() {

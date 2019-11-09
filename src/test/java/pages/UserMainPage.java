@@ -94,6 +94,7 @@ public class UserMainPage extends Page {
         addToCart.click();
 
         wait.until(ExpectedConditions.attributeToBe(badgeQuantity, "innerText", String.valueOf(++quantity)));
+        Assert.assertEquals(badgeQuantity, quantity);
     }
 
     public void productRemoveFromCart() {
