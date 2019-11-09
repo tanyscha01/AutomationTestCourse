@@ -57,6 +57,11 @@ public class UserMainPage extends Page {
     public void productOpen() {
 
         Assert.assertEquals("Yellow Duck", productInfo.getText());
+        Assert.assertEquals("$20", regularPrice.getText());
+        Assert.assertEquals("$18", campaignPrice.getText());
+        Assert.assertEquals("rgba(204, 0, 0, 1)", campaignPrice.getCssValue("color"));
+        Assert.assertEquals("700", campaignPrice.getCssValue("font-weight"));
+        Assert.assertEquals("del", regularPrice.getTagName());
 
         productLink.click();
 
