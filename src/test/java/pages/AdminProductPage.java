@@ -94,7 +94,7 @@ public class AdminProductPage extends Page {
         checkProductAdded(product);
     }
 
-    public void addGeneralInformation(Product product){
+    private void addGeneralInformation(Product product){
 
         wait.until(ExpectedConditions.elementToBeClickable(enabledButton));
         enabledButton.click();
@@ -107,7 +107,7 @@ public class AdminProductPage extends Page {
         image.sendKeys(file.getAbsolutePath());
     }
 
-    public void addAttribute(Product product){
+    private void addAttribute(Product product){
 
         attributesTab.click();
         wait.until(ExpectedConditions.elementToBeClickable(groupAttribute));
@@ -118,7 +118,7 @@ public class AdminProductPage extends Page {
         addAttribute.click();
     }
 
-    public void addPrice(Product product) {
+    private void addPrice(Product product) {
 
         wait.until(ExpectedConditions.elementToBeClickable(pricesTab));
         pricesTab.click();
@@ -127,7 +127,7 @@ public class AdminProductPage extends Page {
         new Select(priceCode).selectByValue(product.getCurrencyCode());
     }
 
-    public void addStock(Product product) {
+    private void addStock(Product product) {
 
         wait.until(ExpectedConditions.elementToBeClickable(stockTab));
         stockTab.click();
@@ -144,7 +144,7 @@ public class AdminProductPage extends Page {
 
     public void checkProductAdded(Product product) {
         catalogOpen(product.getCatalog());
-        Assert.assertNotNull(driver.findElement(By.xpath(String.format("//*[text()='%s']", product.getName()))));
+        Assert.assertNotNull("New product was not added to catalog", driver.findElement(By.xpath(String.format("//*[text()='%s']", product.getName()))));
     }
 
     public void logout() {

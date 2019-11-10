@@ -56,23 +56,23 @@ public class UserMainPage extends Page {
 
     public void productOpen() {
 
-        Assert.assertEquals("Yellow Duck", productInfo.getText());
-        Assert.assertEquals("$20", regularPrice.getText());
-        Assert.assertEquals("$18", campaignPrice.getText());
-        Assert.assertEquals("rgba(204, 0, 0, 1)", campaignPrice.getCssValue("color"));
-        Assert.assertEquals("700", campaignPrice.getCssValue("font-weight"));
-        Assert.assertEquals("del", regularPrice.getTagName());
+        Assert.assertEquals("Product name doesn't match with expected result on main page","Yellow Duck", productInfo.getText());
+        Assert.assertEquals("Product regular price doesn't match with expected result on main page", "$20", regularPrice.getText());
+        Assert.assertEquals("Product campaign price doesn't match with expected result on main page", "$18", campaignPrice.getText());
+        Assert.assertEquals("Color of product campaign price doesn't match with expected result on main page", "rgba(204, 0, 0, 1)", campaignPrice.getCssValue("color"));
+        Assert.assertEquals("Product font doesn't match with font-weight on main page", "700", campaignPrice.getCssValue("font-weight"));
+        Assert.assertEquals("Product text doesn't match with crossed out text on main page", "del", regularPrice.getTagName());
 
         productLink.click();
 
         wait.until(ExpectedConditions.visibilityOf(productBox));
 
-        Assert.assertEquals("Yellow Duck", productTitle.getText());
-        Assert.assertEquals("$20", regularPrice.getText());
-        Assert.assertEquals("$18", campaignPrice.getText());
-        Assert.assertEquals("rgba(204, 0, 0, 1)", campaignPrice.getCssValue("color"));
-        Assert.assertEquals("700", campaignPrice.getCssValue("font-weight"));
-        Assert.assertEquals("del", regularPrice.getTagName());
+        Assert.assertEquals("Product name doesn't match with expected result on product page","Yellow Duck", productTitle.getText());
+        Assert.assertEquals("Product regular price doesn't match with expected result on product page", "$20", regularPrice.getText());
+        Assert.assertEquals("Product campaign price doesn't match with expected result on product page", "$18", campaignPrice.getText());
+        Assert.assertEquals("Color of product campaign price doesn't match with expected result on product page", "rgba(204, 0, 0, 1)", campaignPrice.getCssValue("color"));
+        Assert.assertEquals("Product font doesn't match with font-weight on product page", "700", campaignPrice.getCssValue("font-weight"));
+        Assert.assertEquals("Product text doesn't match with crossed out text on product page", "del", regularPrice.getTagName());
     }
 
     public void productAddToCart() {
@@ -94,7 +94,7 @@ public class UserMainPage extends Page {
         addToCart.click();
 
         wait.until(ExpectedConditions.attributeToBe(badgeQuantity, "innerText", String.valueOf(++quantity)));
-        Assert.assertEquals(badgeQuantity, quantity);
+        Assert.assertEquals("Product was not added to cart", badgeQuantity, quantity);
     }
 
     public void productRemoveFromCart() {
@@ -110,7 +110,7 @@ public class UserMainPage extends Page {
 
         wait.until(ExpectedConditions.visibilityOf(noItemsInCart));
 
-        Assert.assertEquals("There are no items in your cart.", noItemsInCart.getText());
+        Assert.assertEquals("Products were not removed from the cart", "There are no items in your cart.", noItemsInCart.getText());
     }
 
 
